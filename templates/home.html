@@ -8,21 +8,19 @@
 </head>
 
 <header>
-    <section class="contenedorTitulo">
-        <h1 id="titulo">Comparador de precios</h1>
+    <section>
+        <h1>Comparador de precios</h1>
     </section>
 </header>
 
 <body>
-    <form action="/book">
-        <label>ISBN
-        <input type="text" name="isbn">
-        </label>
-        <input type="submit" value="Get book information">
+    <form action="{{ url_for('procesar') }}" method="POST">
+        <label for="nombre"> Nombre del telefono:</label>
+        <input required type="text" name="nombre">
+        <input type="submit" value="Comparar precios">
     </form>
     </body>
     <p>Aquí podrás comparar precios para elegir el móvil que te conviene</p>
-    <p>Hola</p>
 </body>
 
 <footer>
