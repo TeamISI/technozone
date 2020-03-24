@@ -1,4 +1,4 @@
-#workon venv // deactivate
+#workon venv // deactivated
 from flask import Flask, render_template, request
 
 # Creamos un objeto app de Flask
