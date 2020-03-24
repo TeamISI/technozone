@@ -9,8 +9,11 @@ page_content = BeautifulSoup(page_response.content, "html.parser")
 
 phonesElements = page_content.findAll("div", {"class": "tarjeta-articulo__elementos-basicos"})
 
+datos = []
 
-for phones in phonesElements:
-    names = phones.find("a", {"class": "GTM-productClick enlace-disimulado"}).getText()
+def scraper(nombre):
 
-    print(names)
+    for phones in phonesElements:
+        names = phones.find("a", {"class": "GTM-productClick enlace-disimulado"}).getText()
+        datos.append(names)
+    return datos[datos.index(nombre)]

@@ -14,17 +14,54 @@
 </header>
 
 <body>
+   
     <form action="{{ url_for('procesar') }}" method="POST">
-        <label for="nombre"> Nombre del telefono:</label>
-        <input required type="text" name="nombre">
+
+        <section class="form-group">
+            <label for="SO">Sistema Operativo:</label>
+            <select class="form-control" name="SO" required>
+              <option value="Android">Android</option>
+              <option value="IOS">IOS</option>
+            </select>
+        </section>
+
+        <section class="form-group">
+            <label for="RAM">RAM:</label>
+            <select class="form-control" name="RAM" required>
+              <option value="2">2GB</option>
+              <option value="4">4GB</option>
+              <option value="6">6GB</option>
+              <option value="8">8GB</option>
+              <option value="12">12GB</option>
+            </select>
+        </section>
+
+        <section class="form-group">
+            <label for="Almacenamiento">Almacenamiento:</label>
+            <select class="form-control" name="Almacenamiento" required>
+              <option value="32">32GB</option>
+              <option value="64">64GB</option>
+              <option value="128">128GB</option>
+              <option value="256">256GB</option>
+              <option value="512">512GB</option>
+            </select>
+        </section>
+        <label for="Dimension">Dimension de la pantalla en px:</label>
+        <input class="form-group" type="text" name="Dimension" required>
+        </br>
         <input type="submit" value="Comparar precios">
     </form>
-    </body>
+    
     <p>Aquí podrás comparar precios para elegir el móvil que te conviene</p>
 </body>
 
 <footer>
-
+    <h2>Trabajo realizado por:</h2>
+    <ul>
+        <li>Arcadio Abraham Herrera Abril</li>
+        <li>Martín José Gracía Muñoz</li>
+        <li>Miguel Ángel Tejada Ortigosa</li>
+    </ul>
 </footer>
 
 </html>
