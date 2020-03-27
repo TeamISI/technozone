@@ -1,5 +1,4 @@
-INSERT INTO moviles VALUES (
-    0,
+INSERT INTO moviles (Nombre, SO, Almacenamiento, Ram, Url, Precio, Imagen) VALUES (
     'Readmi Note 8 Pro',
     'Android',
     128,
@@ -9,7 +8,7 @@ INSERT INTO moviles VALUES (
     '/home/arcadio/Escritorio/informatica/Cuatrimestre2/ISI/Practicas/technozone/images/Xiaomi-Redmi-Note-8-Pro.png'
 );
 
-INSERT INTO moviles VALUES (
+INSERT INTO moviles (Nombre, SO, Almacenamiento, Ram, Url, Precio, Imagen) VALUES (
     'Readmi Note 8 Pro',
     'Android',
     128,
