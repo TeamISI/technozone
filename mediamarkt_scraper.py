@@ -1,59 +1,38 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -
 
+#pip install scrapy
+import scrapy
+from scrapy.item import Item, Field
+from scrapy.spiders import CrawlSpider
+from scrapy.spiders import Rule
+from scrapy.linkextractors import LinkExtractor
+from scrapy.loader.processors import MapCompose
+from scrapy.loader import ItemLoader
 from bs4 import BeautifulSoup
-import requests
 
-class Phone(object):
-    def __init__(self, name, so, memory,ram, url, price, img):
-        self.name = name
-        self.so = so
-        self.memory = memory
-        self.ram = ram
-        self.url = url
-        self.price = price
-        self.img = img
+# Clase que almacena el contenido del scraping
+class MediamarktItem(Item):
+    nombre = Field()
+    sistemaOperativo = Field()
+    ram = Field()
+    almacenamiento = Field()
+    url = Field()
+    imagen = Field()
+    precio = Field()
 
+class MediamarktCrawler(CrawlSpider):
+    name = 'mediamarkt'
+    allowed_domains = ['mediamarkt.es']
+    start_urls = ['https://www.mediamarkt.es/es/category/_smartphones-701189.html']
 
-class Mediamarkt(object):
-    def __init__(self):
-        self.error = ""
-        self.connected = 0
-    
-    def connect(self, url):
-        try:
-            self.page_response = requests.get(url=url, timeout=5)
-            self.page_content = BeautifulSoup(self.page_response.content, "html.parser")
-            self.connected = 1
-            return True
-        except Exception as e:
-            self.error="Error: %s" % (e)
+    rules = (
+        Rule(LinkExtractor(allow=r'page=\d+'), follow=True),
+    )
 
-    def get_content(self, tag, attribute, attribue_name):
-        self.content =  self.page_content.fin
+    def parse_items(self, response):
+        item = ItemLoader(MediamarktItem, response)
 
+        
 
-'''
-phones_contents = page_content.findAll("div", {"class": "content"})
-
-movil = Phone("Readmi Note 8 Pro", "Android", 128, 6, "https://www.mediamarkt.es/es/product/_m%C3%B3vil-xiaomi-redmi-note-8-pro-azul-128-gb-6-gb-ram-6-53-full-hd-helio-g90t-4500-mah-android-1469588.html", 249, " ")
-
-phones = [] # Vector de moviles
-
-phones.append(movil)
-
-for i in phones:
-    print("Nombre: " + i.name)
-    print("Sistema Operativo: " + i.so)
-    print("RAM: " + str(i.ram))
-    print("Url: " + i.url)
-    print("Almacenamiento interno: " + str(i.memory))
-    print("Precio: " + str(i.price) + "€")
-    print("Imagen: " + i.img)
-'''
-'''
-def scraper(ram, so, memory):
-    for features in phones_contents:
-        h2 = features.find("h2")
-        names = h2.find("a").getText()
-'''
+        yield item.load_item()
