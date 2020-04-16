@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -
 
+# COMPILACION scrapy runspider phone_house_scraper.py -o phone_house_data.csv -t csv --set CLOSESPIDER_ITEMCOUNT=10
 #pip install scrapy
 import scrapy
 from scrapy.item import Item, Field
@@ -9,7 +10,6 @@ from scrapy.spiders import Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.loader.processors import MapCompose
 from scrapy.loader import ItemLoader
-from bs4 import BeautifulSoup
 
 # Clase que almacena el contenido del scraping
 class PhoneHouseItem(Item):
@@ -35,10 +35,15 @@ class PhoneHouseCrawler(CrawlSpider):
         item = ItemLoader(PhoneHouseItem(), response)
         item.add_xpath('nombre', '//*[@id="top-contenedor-principal"]/main/section[1]/div[1]/div/h1/text()')
         item.add_xpath('sistemaOperativo', '//*[@id="modulo-caracteristicas"]/div/div/div[5]/ul/li[1]/div[2]/text()')
-        # Faltaría eliminar los caracteres GB
-        item.add_xpath('ram', '//*[@id="modulo-caracteristicas"]/div/div/div[3]/ul/li[1]/div[2]/text()') #MapCompose(lambda i:i[0])
-        # Faltaría eliminar los espacios en blanco y GB
-        item.add_xpath('almacenamiento', '//*[@id="modulo-caracteristicas"]/div/div/div[3]/ul/li[2]/div[2]/text()')
+        ram = item.get_xpath('//*[@id="modulo-caracteristicas"]/div/div/div[3]/ul/li[1]/div[2]/text()')
+        ram = str(ram[0])
+        contenido = ram[0].rstrip('GB')
+        item.add_value('ram', contenido)
+        
+        alm = item.get_xpath('//*[@id="modulo-caracteristicas"]/div/div/div[3]/ul/li[2]/div[2]/text()')
+        alm = str(alm[0])
+        contenido = alm.rstrip(' GB')
+        item.add_value('almacenamiento', contenido)
         item.add_value('url', response.url)
         item.add_xpath('precio', '//*[@id="precios"]/div[2]/div[1]/h3/span[2]/text()')
         img = item.get_xpath('//*[@id="top-contenedor-principal"]/main/section[1]/div[2]/div/div[1]/div[2]/div[1]/div[1]/img/@src')
@@ -46,6 +51,6 @@ class PhoneHouseCrawler(CrawlSpider):
         item.add_value('imagen', contenido)
 
         # Faltaría eliminar los atributos del objeto que aparecen cada vez que se descargan los datos de la web
-
+        # Arreglar el problema de  indexerror list index out of range
         yield item.load_item()
         
