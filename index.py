@@ -23,8 +23,9 @@ def procesar():
     so = request.form.get("SO")
     ram = request.form.get("RAM")
     almacenamiento = request.form.get("Almacenamiento")
+    camara = request.form.get('Camara')
     #nombre = pccomponentes_scraper.scraper("Huawei P40 Lite 6/128GB Midnight Black Libre")
-    return render_template("comparador.html", SO = so, RAM = ram, Almacenamiento = almacenamiento, nombre = 'Xiaomi Readmi Note 8')
+    return render_template("comparador.html", SO = so, RAM = ram, Almacenamiento = almacenamiento, nombre = 'Xiaomi Readmi Note 8', Camara = camara)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
