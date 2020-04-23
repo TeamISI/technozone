@@ -1,5 +1,4 @@
 from database_connection import *
-from main_scraper import Phone, lista
 
 #Poner los insert en main_scraper porque cada vez que se hacen insert es porque se ha leido del servidor
 

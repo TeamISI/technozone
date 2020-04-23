@@ -3,62 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css"">
+    <link href="../static/styles/style.css " rel="stylesheet" type="text/css"">
     <title>TechnoZone</title>
 </head>
 
-<header>
-    <section>
-        <h1>Comparador de precios</h1>
-    </section>
-</header>
-
 <body>
-   
-    <form action="{{ url_for('procesar') }}" method="POST">
 
-        <section class="form-group">
-            <label for="SO">Sistema Operativo:</label>
-            <select class="form-control" name="SO" required>
-              <option value="Android">Android</option>
-              <option value="IOS">IOS</option>
-            </select>
+    <header>
+        <section id="tituloheader" >
+            <h1>Comparador de precios</h1>
         </section>
+    </header>
 
-        <section class="form-group">
-            <label for="RAM">RAM:</label>
-            <select class="form-control" name="RAM" required>
-              <option value="2">2GB</option>
-              <option value="4">4GB</option>
-              <option value="6">6GB</option>
-              <option value="8">8GB</option>
-              <option value="12">12GB</option>
-            </select>
-        </section>
+   <main>
+        <!--<form action="{{ url_for('procesar') }}" method="POST">-->
+        <form action="comparador.html" method="POST">
+            <h3 id="h1body">Aquí podrás comparar precios para elegir el móvil que te conviene</h3>
 
-        <section class="form-group">
-            <label for="Almacenamiento">Almacenamiento:</label>
-            <select class="form-control" name="Almacenamiento" required>
-              <option value="32">32GB</option>
-              <option value="64">64GB</option>
-              <option value="128">128GB</option>
-              <option value="256">256GB</option>
-              <option value="512">512GB</option>
-            </select>
-        </section>
-        <input type="submit" value="Comparar precios">
-    </form>
+            <section class="form-group">
+                <label for="SO">Sistema Operativo:</label>
+                <select class="form-control" name="SO" required>
+                <option value="Android">Android</option>
+                <option value="IOS">IOS</option>
+                </select>
+            </section>
+
+            <section class="form-group">
+                <label id="RAM" for="RAM">RAM:</label>
+                <select class="form-control" name="RAM" required>
+                <option value="2">2GB</option>
+                <option value="4">4GB</option>
+                <option value="6">6GB</option>
+                <option value="8">8GB</option>
+                <option value="12">12GB</option>
+                </select>
+            </section>
+
+            <section class="form-group">
+                <label id="almacenamiento" for="Almacenamiento">Almacenamiento:</label>
+                <select class="form-control" name="Almacenamiento" required>
+                <option value="32">32GB</option>
+                <option value="64">64GB</option>
+                <option value="128">128GB</option>
+                <option value="256">256GB</option>
+                <option value="512">512GB</option>
+                </select>
+            </section>
+
+            <section class="form-group">
+                <label id="camara" for="Camara">Camara:</label>
+                <select id="controlcamera" class="form-control" name="Camara" required>
+                <option value="8">8MP</option>
+                <option value="21">21MP</option>
+                <option value="31">31MP</option>
+                
+                </select>
+            </section>
+            <input id="submit" type="submit" value="Comparar precios">
+        </form>
     
-    <p>Aquí podrás comparar precios para elegir el móvil que te conviene</p>
-</body>
+   
 
-<footer>
-    <h2>Trabajo realizado por:</h2>
-    <ul>
-        <li>Arcadio Abraham Herrera Abril</li>
-        <li>Martín José Gracía Muñoz</li>
-        <li>Miguel Ángel Tejada Ortigosa</li>
-    </ul>
-</footer>
+   </main>
+    
+    <footer>
+        <h2>Página en desarrollo</h2>
+        <!--
+<ul>
+            <li>Arcadio Abraham Herrera Abril</li>
+            <li>Martín José Gracía Muñoz</li>
+            <li>Miguel Ángel Tejada Ortigosa</li>
+        </ul>
+        -->
+
+        <p id="pfooter">
+            
+                <span>
+                    Aviso Legal | Política de cookies | Política de Privacidad | Política de Contratación
+                </span>
+            </a>
+        </p>
+        
+    </footer>
+</body>
 
 </html>
