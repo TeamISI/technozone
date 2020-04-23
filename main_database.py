@@ -20,12 +20,6 @@ if result:
         print(obj.error)
     '''
     
-    # ejeplo 2 - INSERT
-    for i in lista:
-        records = (i.name, i.so, int(i.memory), int(i.ram), i.url, float(i.price), i.img)
-        obj.prepare("INSERT INTO moviles (Nombre, SO, Almacenamiento, Ram, Url, Precio, Imagen) VALUES (%s, %s, %s, %s, %s, %s, %s)", records)
-    print (obj.lastId)
-
     '''
     # ejemplo 3 - UPDATE
     query = "UPDATE tabla SET Texto=%s WHERE id=%s"
